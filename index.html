@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get User Location by IP</title>
+</head>
+<body>
+
+<script>
+    // Function to get user's location using their IP address
+    function getUserLocation() {
+        // Replace 'YOUR_API_KEY' with a valid API key from a location-based service
+        var apiKey = 'de36deef5b6dc3';
+
+        // Make a request to a location-based service (e.g., ipinfo.io) to get location information
+        fetch('https://ipinfo.io/json?token=' + apiKey)
+            .then(response => response.json())
+            .then(data => {
+                var location = data.loc.split(',');
+                console.log( location )
+                var latitude = location[0];
+                var longitude = location[1];
+
+                // Use latitude and longitude as needed
+                console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+            })
+            .catch(error => {
+                console.error('Error fetching location:', error);
+            });
+    }
+
+    // Call the getUserLocation function when the page is loaded
+    window.onload = getUserLocation;
+</script>
+
+</body>
+</html>
